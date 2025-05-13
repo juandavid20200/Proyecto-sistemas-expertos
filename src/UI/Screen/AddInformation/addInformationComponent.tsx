@@ -7,9 +7,8 @@ const AddInformationComponent = () => {
 
   return (
     <>
-      <HeaderComponent />
       <FormComponent />
-      <FooterCompoent />
+
     </>
   );
 };

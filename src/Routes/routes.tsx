@@ -1,16 +1,15 @@
 import React from "react";
 import { Route, BrowserRouter, Routes} from "react-router-dom";
 import { AddInformationComponent, Main, TableScreen } from "../UI/Screen";
+import { MinimalistLogin } from "../UI/Screen/Login";
 
 
 const AppRoute:React.FC = () =>{
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="/hola" element={<h1>HOLA</h1>}/>
-                <Route path="/" element={<Main/>}/>
-                <Route path="/add-information" element={<AddInformationComponent/>}/>
-                <Route path="/table-information" element={<TableScreen/>}/>
+                <Route path="/" element={<MinimalistLogin />}/>
+                <Route path="/consultas" element={<AddInformationComponent/>}/>
             </Routes>
         </BrowserRouter>
     )

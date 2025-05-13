@@ -4,6 +4,7 @@ import { FormCardComponent } from "../FormCard";
 import { useEffect, useState } from "react";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { decisionTree, DecisionNode } from "./decisionTree";
+import SelectAllTransferList from "./transferList";
 
 // Representa una entrada del historial
 interface HistoryEntry {
@@ -50,10 +51,10 @@ const FormComponent = () => {
   return (
     <section className="FormSection">
       <div className="TitleContainer">
-        <TitleComponent text="Añadir información" />
+        <TitleComponent text="Consulta" />
         <TextSemiBoldComponent
           weight="200"
-          text="Completa los datos para el módulo de observabilidad. 
+          text="Completa los datos para seguir con la consulta.
           Las preguntas se irán generando automáticamente."
         />
       </div>
@@ -65,79 +66,8 @@ const FormComponent = () => {
             size={16}
             weight="300"
           />
-
-          {/* Historial de preguntas y respuestas */}
-          {history.map((entry, index) => (
-            <div key={index} style={{ marginBottom: "15px" }}>
-              <strong>{entry.question}</strong>
-              <div style={{ marginLeft: "10px", color: "#555" }}>
-                Respuesta: {entry.answer}
-              </div>
-            </div>
-          ))}
-
-          {/* Pregunta actual si no se ha llegado al resultado final */}
-          {currentNode && (
-            <div style={{ marginTop: "20px" }}>
-              <TextSemiBoldComponent
-                text={currentNode.question}
-                size={15}
-                weight="400"
-              />
-              <Select
-                variant="standard"
-                onChange={handleSelection}
-                defaultValue=""
-                style={{
-                  paddingLeft: 20,
-                  borderBottom: "2px solid var(--primary-color)",
-                  borderRadius: "10px",
-                  marginTop: "10px",
-                }}
-                sx={{
-                  "&:before": { borderBottom: "none" },
-                  "&:after": { borderBottom: "none" },
-                  "&:hover:not(.Mui-disabled):before": { borderBottom: "none" },
-                }}
-              >
-                {Object.keys(currentNode.options).map((option) => (
-                  <MenuItem key={option} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </Select>
-            </div>
-          )}
-
-          {/* Resultado final */}
-          {result && (
-            <div style={{ marginTop: "30px" }}>
-              <TextSemiBoldComponent
-                text="Resultado:"
-                size={15}
-                weight="600"
-              />
-              <div style={{ color: "#c62828", marginTop: "8px", fontSize: "16px" }}>
-                {result}
-              </div>
-
-              <button
-                onClick={handleRestart}
-                style={{
-                  marginTop: "20px",
-                  padding: "8px 16px",
-                  backgroundColor: "#1976d2",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                }}
-              >
-                Reiniciar diagnóstico
-              </button>
-            </div>
-          )}
         </div>
+        
       </FormCardComponent>
     </section>
   );

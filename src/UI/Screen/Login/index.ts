@@ -1,0 +1,1 @@
+export { default as MinimalistLogin } from './LoginScreen'

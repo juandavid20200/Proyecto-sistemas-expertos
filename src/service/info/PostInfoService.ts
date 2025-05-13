@@ -2,23 +2,23 @@ import axios, { AxiosError } from "axios";
 import { environment } from "../../environment/local";
 import { PostInfo } from "../../interfaces/PostInfo";
 
-const PostInfoService = async (formData: PostInfo) => {
-  const data = new FormData();
-      data.append("type_id", formData.type_id);
-      data.append("user_id", formData.user_id);
-  
-      if (formData.title?.trim()) data.append("title", formData.title);
-      if (formData.description?.trim())
-        data.append("description", formData.description);
-      if (formData.icon) data.append("icon", formData.icon);
-      if (formData.link?.trim()) data.append("link", formData.link);
-      if (formData.filename instanceof File)
-        data.append("file", formData.filename);
+type PostInfoRequest = PostInfo & {
+  sintomas: string[];
+};
+
+const PostInfoService = async (formData: PostInfoRequest) => {
+  const headers = {
+    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiZXhwIjoxNzQ0MzM0MjM2fQ.DVk3KvT405u_es3DEKiJKZeBDSsI3WMOA9aGWv1JuBQ`,
+    'Content-Type': 'application/json',
+  };
+
   try {
-    const response = await axios.post(`${environment.app_url}/info`, data, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    return response.data;
+    const response = await axios.post(
+      `${environment.app_url}/consultas`,
+      formData,
+      { headers } // aquí los pasas correctamente
+    );
+    return response;
   } catch (error) {
     if (error instanceof AxiosError) {
       console.error("❌ Error en la API:", error.response?.data || error.message);
