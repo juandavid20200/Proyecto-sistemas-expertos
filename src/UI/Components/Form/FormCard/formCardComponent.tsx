@@ -86,6 +86,14 @@ const FormCardComponent = ({ children, name, id }: Props) => {
 
   const handleModalClose = () => {
     setShowModal(false);
+
+    // Guardamos el primer síntoma seleccionado para usarlo en el chatbot
+    if (selectedSymptoms.length > 0) {
+      localStorage.setItem("primer_sintoma", selectedSymptoms[0]);
+    }
+
+    // Redirigimos al chatbot
+    navigate("/chatbot");
   };
 
   return (
