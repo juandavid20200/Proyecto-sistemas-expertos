@@ -17,7 +17,7 @@ const TextSemiBoldComponent = ({ text, size, weight, color, onClick }: Props) =>
         style={{
           fontSize: size ? `${size}px` : "none",
           fontWeight: weight ? `${weight}` : "500",
-          color: color ? "#FFFFFF" : "",
+          color: color ? "#000000" : "",
         }}
       >
         {text}

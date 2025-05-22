@@ -18,29 +18,33 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   loginBox: {
     width: '100%',
-    maxWidth: '400px',
-    padding: 32,
+    maxWidth: '480px',      
+    padding: 40,          
     backgroundColor: 'white',
-    borderRadius: 8,
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    borderRadius: 12,    
+    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.30)', 
     textAlign: 'center',
+    transition: 'box-shadow 0.3s ease',  
+  },
+  loginBoxHover: {
+    boxShadow: '0 12px 36px rgba(0, 0, 0, 0.50)', 
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,  
     fontWeight: 'bold',
     color: '#1f2937',
-    marginBottom: 8,
+    marginBottom: 12, 
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 16,  
     color: '#6b7280',
-    marginBottom: 24,
+    marginBottom: 32, 
   },
   form: {
-    marginTop: 32,
+    marginTop: 24, 
   },
   inputGroup: {
-    marginBottom: 20,
+    marginBottom: 22,
     position: 'relative',
   },
   label: {
@@ -49,77 +53,79 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   input: {
     width: '100%',
-    padding: '12px 12px 12px 40px',
+    padding: '14px 14px 14px 44px', 
     border: '1px solid #d1d5db',
-    borderRadius: 4,
-    fontSize: 14,
+    borderRadius: 6, 
+    fontSize: 15,
     boxSizing: 'border-box',
     outline: 'none',
     transition: 'border-color 0.2s, box-shadow 0.2s',
   },
   inputFocus: {
-    borderColor: '#3b82f6',
-    boxShadow: '0 0 0 2px rgba(59, 130, 246, 0.3)',
+    borderColor: '#d90429',
+    boxShadow: `0 0 0 3px #d904294D`, 
   },
   icon: {
     position: 'absolute' as 'absolute',
-    left: 12,
+    left: 14,
     top: '50%',
     transform: 'translateY(-50%)',
     color: '#9ca3af',
-    width: 16,
-    height: 16,
+    width: 18,
+    height: 18,
   },
   rememberContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 24,
-    fontSize: 14,
+    marginBottom: 28,
+    fontSize: 15,
   },
   checkboxContainer: {
     display: 'flex',
     alignItems: 'center',
   },
   checkbox: {
-    marginRight: 8,
+    marginRight: 10,
   },
   forgotPassword: {
-    color: '#3b82f6',
+    color: '#d90429',
     textDecoration: 'none',
-    fontSize: 14,
+    fontSize: 15,
   },
   button: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    padding: 10,
-    backgroundColor: '#3b82f6',
+    padding: 14,
+    backgroundColor: '#d90429',
     color: 'white',
     border: 'none',
-    borderRadius: 4,
-    fontSize: 14,
-    fontWeight: 500,
+    borderRadius: 6,
+    fontSize: 16,
+    fontWeight: 600,
     cursor: 'pointer',
-    transition: 'background-color 0.2s',
+    transition: 'background-color 0.3s, box-shadow 0.3s',
+    boxShadow: '0 4px 12px rgba(217, 4, 41, 0.4)', 
   },
   buttonHover: {
-    backgroundColor: '#2563eb',
+    backgroundColor: '#a00320',
+    boxShadow: '0 6px 18px rgba(160, 3, 32, 0.6)', 
   },
   registerText: {
-    fontSize: 14,
+    fontSize: 15,
     color: '#6b7280',
-    marginTop: 20,
+    marginTop: 28,
   },
   registerLink: {
-    color: '#3b82f6',
+    color: '#d90429',
     textDecoration: 'none',
   },
   iconSvg: {
     display: 'inline-block',
-    width: 16,
-    height: 16,
+    width: 18,
+    height: 18,
     stroke: 'currentColor',
     strokeWidth: 2,
     fill: 'none',
@@ -134,6 +140,7 @@ export default function MinimalistLogin() {
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [loginBoxHovered, setLoginBoxHovered] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -207,7 +214,14 @@ export default function MinimalistLogin() {
 
   return (
     <div style={styles.container}>
-      <div style={styles.loginBox}>
+      <div
+        style={{
+          ...styles.loginBox,
+          ...(loginBoxHovered ? styles.loginBoxHover : {}),
+        }}
+        onMouseEnter={() => setLoginBoxHovered(true)}
+        onMouseLeave={() => setLoginBoxHovered(false)}
+      >
         <h2 style={styles.title}>Iniciar Sesión</h2>
         <p style={styles.subtitle}>Ingresa tus credenciales para acceder</p>
 

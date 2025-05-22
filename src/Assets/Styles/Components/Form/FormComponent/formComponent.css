@@ -1,71 +1,112 @@
-.FormSection{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
+.FormSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #fff;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(0, 0, 0, 0.05); /* sombra suave gris */
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease;
 }
 
-.TitleContainer{
-    display: flex;
-    flex-direction: column;
-    max-width: 50vw;
+.FormSection:hover {
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(0, 0, 0, 0.1); /* sombra gris más intensa al hover */
 }
 
-.SelectComponent{
-    width: 100%;
+.TitleContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 50vw;
+  text-align: left; /* izquierda, nada de centro */
+  margin-bottom: 2rem;
+  color: #000000; /* negro oscuro elegante */
+  font-weight: 500; /* normal, no todo bold */
+  letter-spacing: 0.05em;
+  
+  /* quito text-transform aquí para que no afecte todo */
 }
 
-.FormCard{
-    width: 50vw;
-    margin: 20px;
-    border-radius: 10px;
-    border: 1px solid var(--netral-D_Gray-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+.SelectComponent {
+  width: 100%;
 }
 
-.CardText{
-    padding: 20px;
-    width: 80%;
+.FormCard {
+  width: 50vw;
+  margin: 20px;
+  border-radius: 12px;
+  border: 3px solid #d90429; /* bordes rojos fijos */
+  background-color: #fff; /* fondo blanco limpio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.2); /* sombra gris más visible */
+  transition: box-shadow 0.3s ease;
 }
 
-.InputContainer{
-    width: 80%;
-    margin-bottom: 30px;
+.FormCard:hover {
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.35); /* sombra gris más fuerte al hover */
 }
 
-.image-upload-label{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: var(--neutral-white-color);
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 50%;
-    border: 2px solid var(--primary-color);
-    margin-top: 20px;
+.CardText {
+  padding: 20px;
+  width: 80%;
+  font-weight: 500;
+  color: #333;
 }
 
-.upload-placeholder{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.InputContainer {
+  width: 80%;
+  margin-bottom: 30px;
 }
 
-.image-preview{
-    object-fit: contain;
-    width: 100%;
+.image-upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--neutral-white-color);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 50%;
+  border: 2px solid #d90429;
+  background-color: #ff3b5c;
+  margin-top: 20px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.ImageInputContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.image-upload-label:hover {
+  background-color: #a00320;
+  border-color: #a00320;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+}
+
+.image-preview {
+  object-fit: contain;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(217, 4, 41, 0.2);
+}
+
+.ImageInputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
