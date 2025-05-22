@@ -21,6 +21,34 @@ type Props = {
   id: string;
 };
 
+const SintomaMap: Record<string, string[]> = {
+  "Dificultad para respirar": ["dificultad_respirar"],
+  "Fiebre": ["fiebre"],
+  "Dolor de pecho": ["dolor_pecho"],
+  "Dolor abdominal": ["dolor_abdominal"],
+  "Mareo debilidad": ["mareo_debilidad"],
+  "Nauseas o Vomito": ["nausea_vomito"],
+  "Perdida de Concienca": ["perdida_conciencia"],
+  "Brote en la piel": ["brote_piel"],
+  "Accidente o Golpe": ["accidente_golpe"]
+};
+
+// Transforma los síntomas en "algo_algo"
+function transformarSintomas(sintomasSeleccionados: string[]) {
+  const resultado: Record<string, boolean> = {};
+
+  sintomasSeleccionados.forEach((sintoma) => {
+    const claves = SintomaMap[sintoma];
+    if (claves) {
+      claves.forEach((clave) => {
+        resultado[clave] = true;
+      });
+    }
+  });
+
+  return resultado;
+}
+
 const FormCardComponent = ({ children, name, id }: Props) => {
   const navigate = useNavigate();
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
@@ -34,9 +62,9 @@ const FormCardComponent = ({ children, name, id }: Props) => {
         throw new Error("No hay token de autenticación");
       }
 
-      const dataToSend = {
-        razon: selectedSymptoms.join(", "),
-      };
+      const claves = transformarSintomas(selectedSymptoms);
+      const razones = Object.keys(claves).filter((clave) => claves[clave]).join(", ");
+      const dataToSend = { razon: razones };  
 
       const headers = {
         Authorization: `Bearer ${token}`,
