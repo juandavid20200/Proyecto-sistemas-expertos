@@ -64,7 +64,8 @@ const FormCardComponent = ({ children, name, id }: Props) => {
 
       const claves = transformarSintomas(selectedSymptoms);
       const razones = Object.keys(claves).filter((clave) => claves[clave]).join(", ");
-      const dataToSend = { razon: razones };  
+      const dataToSend = { razon: razones }; 
+      localStorage.setItem("ruta",razones) 
 
       const headers = {
         Authorization: `Bearer ${token}`,
